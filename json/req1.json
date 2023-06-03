@@ -1,0 +1,35 @@
+{
+    "filter": {
+        "logic": "and",
+        "filters": [
+            {
+                "field": "UnitsInStock",
+                "operator": "lte",
+                "value": 1
+            },
+            {
+                "field": "ProductName",
+                "operator": "startswith",
+                "value": "chai"
+            },
+            {
+                "field": "UnitPrice",
+                "operator": "neq",
+                "value": 18
+            },
+            {
+                "field": "ProductID",
+                "operator": "eq",
+                "value": 1
+            }
+        ]
+    },
+    "sort": [
+        {
+            "field": "UnitsInStock",
+            "dir": "asc"
+        }
+    ],
+    "skip": 0,
+    "take": 10
+}

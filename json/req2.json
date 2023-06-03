@@ -1,0 +1,39 @@
+{
+    "filter": {
+        "filters": [
+            {
+                "logic": "or",
+                "filters": [
+                    {
+                        "field": "ProductID",
+                        "operator": "eq",
+                        "value": 1
+                    },
+                    {
+                        "field": "ProductID",
+                        "operator": "eq",
+                        "value": 2
+                    }
+                ]
+            },
+            {
+                "logic": "and",
+                "filters": [
+                    {
+                        "field": "UnitPrice",
+                        "operator": "gte",
+                        "value": 0
+                    },
+                    {
+                        "field": "UnitPrice",
+                        "operator": "lte",
+                        "value": 10
+                    }
+                ]
+            }
+        ],
+        "logic": "and"
+    },
+    "skip": 0,
+    "take": 8
+}
