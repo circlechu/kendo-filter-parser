@@ -2,7 +2,7 @@
   "name": "kendo-filter-parser",
   "version": "1.0.0",
   "description": "",
-  "main": "test.js",
+  "main": "index.js",
   "type": "module",
   "dependencies": {
     "@progress/kendo-data-query": "^1.5.5",
@@ -10,6 +10,7 @@
     "moment": "^2.29.4"
   },
   "scripts": {
+    "start":"node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
