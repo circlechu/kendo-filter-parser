@@ -1,12 +1,13 @@
-// import _ from 'lodash';
-// import { toDataSourceRequestString, toDataSourceRequest } from '@progress/kendo-data-query';
+import _ from 'lodash';
+import { toDataSourceRequestString, toDataSourceRequest } from '@progress/kendo-data-query';
 // import parseFitlerStr from './filterHelper/index.js';
-import model from './json/req1.json' assert { type: 'json' };
+// import model from './json/req1.json' assert { type: 'json' };
 // import model from './json/req2.json' assert { type: 'json' };
-// // import model from './json/req3.json' assert { type: 'json' };
+// import model from './json/req3.json' assert { type: 'json' };
+import model from './json/req4.json' assert { type: 'json' };
 
-// const req = toDataSourceRequest(model);
-// console.log(req.filter)
+const req = toDataSourceRequest(model);
+console.log(req.filter)
 
 // var rx2 = /\(([^)]+)\)/;
 // let found = req.filter.match(rx2);
@@ -14,7 +15,7 @@ import model from './json/req1.json' assert { type: 'json' };
 // // const fn = parseFitlerStr(req.filter);
 // // console.log(fn.toString())
 function parseFilterExpression(filterExpression) {
-    const regex = /\(([^()]+)\)/g;
+    const regex = /\(?([^()]+)\)?/g;
     const conditions = [];
   
     let matches;
@@ -28,7 +29,8 @@ function parseFilterExpression(filterExpression) {
   }
   
   function parseSubExpression(subExpression) {
-    const regex = /(\w+)~(eq|ne|gt|lt|gte|lte)~([\w.-]+)/g;
+    // const regex = /(\w+)~(eq|ne|gt|lt|gte|lte)~([\w.-]+)/g; 
+    const regex = /(\w+)~(eq|ne|gt|lt|gte|lte)~'?([^']+)'?/g // for date example: FirstOrderedOn~eq~'2023-06-03T04:00:00.000Z'
     const conditions = [];
   
     let matches;
@@ -56,7 +58,7 @@ function parseFilterExpression(filterExpression) {
     return `${field} ${operators[operator]} '${value}'`;
   }
   
-  const filterExpression = '((ProductID~eq~1~or~ProductID~eq~2)~and~(UnitPrice~gte~0~and~UnitPrice~lte~10))';
+  const filterExpression = `${req.filter}`;//'((ProductID~eq~1~or~ProductID~eq~2)~and~(UnitPrice~gte~0~and~UnitPrice~lte~10))';
   const sqlStatement = `SELECT * FROM your_table WHERE ${parseFilterExpression(filterExpression)}`;
   
   console.log(sqlStatement);
